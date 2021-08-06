@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i%20|%20Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%20|%20Hind:300,400,500,600,700');
+
+*{
+	box-sizing: border-box;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	font-family: "Poppins",sans-serif;
+	background-color: #eee7;`
+}
+
+a{
+	text-decoration: none;
+}
+
+::-moz-selection {
+	color: #fff;
+	background-color: rgba(255, 0, 4, 1);
+}
+
+::selection {
+	color: #fff;
+	background-color: rgba(255, 0, 4, 1);
+}
+
+.header-cont{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #01172d;
+	padding: 6px 0;
+	border-bottom: 2px solid rgba(255, 0, 4, 1);
+}
+
+.header{
+	width: 980px;
+	max-width: 100%;
+}
+
+.header-logo-cont{
+	display: inline-flex;
+	justify-content: space-between;
+}
+
+.logo-cont-cont{
+	align-self: center;
+	margin-right: 12px;
+}
+
+.logo-cont{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	width: 100%;
+	max-width: 40px;
+	cursor: pointer;
+	background-color: #fff;
+	border-radius: 100%;
+}
+
+.header-logo-cont a{
+	display: flex;
+	padding: 0 ;
+}
+
+.site-title-cont h1{
+	color: #fff;
+	font-size: 1.4rem;
+	font-family: Montserrat,sans-serif;
+	font-weight: 900;
+	letter-spacing: 1px;
+	transition: 0.3s;
+}
+
+.site-title-cont h1:hover{
+	transform: translateX(5px);
+}
+
+.site-title-cont h1 a{
+	color: #fff;
+}
+
+.header-logo{
+	user-select: none;
+	max-width: 100%;
+}
+
+.Highlights-info-cont{
+	margin: auto;
+}
+
+.football-league-info-cont{
+	display: flex;
+	margin: auto;
+	margin-top: 1rem;
+	width: 100%;
+	max-width: 980px;
+}
+
+.match-highlights-cont{
+	display: flex;
+	width: 100%;
+	/* background-color: red; */
+	flex-direction: column;
+}
+
+.search-engine-cont{
+	display: flex;
+	background-color: #fff;
+	width: 100%;
+	box-shadow: 0 0 10px #f3eded;
+	padding: 20px;
+	border-radius: 15px;
+	margin-bottom: 2rem;
+}
+
+.search-input{
+	display: flex;
+	position: relative;
+	outline: none;
+	border: 1px solid transparent;
+	width: 100%;
+	font-size: 1rem;
+	font-family: "Poppins",sans-serif;
+	padding: 8px;
+	padding-left: 2.5rem;
+	border-radius: 20px;
+	background-color: #f2f2f2;
+	transition: 0.3s;
+}
+
+.search-btn{
+	position: absolute;
+	display: flex;
+	align-self: center;
+	background-color: transparent;
+	border: none;
+	border-radius: 20px;
+	padding: 10px 12px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.search-input:focus{
+	border: 1px solid rgba(255, 0, 0, 0.5);
+}
+
+.fa-search{
+	align-self: center;
+	font-size: 1.2rem;
+	color: rgb(83, 100, 113);
+	transition: 0.3s;
+}
+
+.search-input:focus + .search-btn > .fa-search{
+	color: rgba(255, 0, 0, 0.5);
+}
+
+.match-highlight-box-cont{
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+	width: 100%;
+	box-shadow: 0 0 10px #f3eded;
+	border-radius: 15px;
+	margin-bottom: 2rem;
+}
+
+.match-highlight-title-cont{
+	margin-left: 1rem;
+	padding-bottom: 20px;
+}
+
+.match-highlight-title-cont h1{
+	font-size: 1.2rem;
+}
+
+.match-highlight-teams-cont{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px dashed #f2f2f2;
+	border-bottom: 1px dashed #f2f2f2;
+	margin-bottom: 4rem;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.match-highlight-teams-cont:hover{
+	background-color: #f8f8f8;
+}
+
+.match-highlight-teams{
+	display: flex;
+	flex-direction: column;
+}
+
+.match-highlight-teams span{
+	text-align: center;
+}
+
+.football-league-nav-cont{
+	width: 300px;
+	/* background-color: green; */
+}
+
+.side-bar-cont{
+	position: fixed;
+	padding: 0 16px;
+	overflow-y: auto;
+	width: 300px;
+	height: 100%;
+}
