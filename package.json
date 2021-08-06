@@ -2,11 +2,20 @@
   "name": "Footie-Lights",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "keywords": [],
   "author": "Monoametsi Junior Mosemeng <216026633@student.uj.ac.za>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
 }
