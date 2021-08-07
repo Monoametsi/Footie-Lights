@@ -29,3 +29,20 @@ let highlightVidReveal = function(){
 }
 
 highlightVidReveal();
+
+/* let footballHighlightData = `https://www.scorebat.com/video-api/v3/`;
+
+	fetch(footballHighlightData, { 
+		method: 'GET'
+	} ).then( async (res) => {
+		let response = await res.json();
+		
+		//if(response.ok){
+			console.log(response);
+		//}
+		
+	}).catch((err) => {
+		
+		console.log(err);
+		
+	}); */
