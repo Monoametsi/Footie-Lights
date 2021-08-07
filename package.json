@@ -4,8 +4,8 @@
   "description": "",
   "main": "Server/index.js",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "node .",
+    "dev": "nodemon ."
   },
   "keywords": [],
   "author": "Monoametsi Junior Mosemeng <216026633@student.uj.ac.za>",
@@ -16,6 +16,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^4.1.0"
   }
 }
