@@ -11,7 +11,64 @@
 <title> Footie-Lights: Lastest Football Highlights </title>
 </head>
 <body>
-<% console.log(result.length); %>
+
+	<% let competitionArr = new Set(); 
+	
+	 result.map((compName) => {
+		let { competition } = compName;
+		competitionArr.add(competition.slice(competition.search(":") + 1, competition.length).trim());
+	});
+	
+	 let hightlightBox = () => { 
+	
+	 for(let compName of competitionArr) { %>
+	 
+	 <div class="match-highlight-box-cont">
+				
+		<div class="match-highlight-title-cont">
+		
+			<h1>
+				<a href="<%= `${ req.url }${ compName }` %>"> <%= compName %> </a> 
+			</h1>
+		
+		</div>
+							
+		<% for(let matchObj of result) { 
+			let { title, competition, date, videos } = matchObj;
+		
+				 if(compName === competition.slice(competition.search(":") + 1, competition.length).trim()){ 
+				 %>
+				
+					
+						
+						<div class="match-highlight-teams-cont">
+						
+							<div class="match-highlight-teams">
+							
+								<span> <%= title %> </span>
+								<span> 21/08/06 </span>
+							
+							</div>
+							
+							<div class="match-highlight-vid-cont">
+							
+							<% let vids = [...videos.map(JSON.stringify)].map(JSON.parse); %>
+								<%= vids[0].embed %>
+							
+							</div>
+						
+						</div>
+					
+						
+				
+				<% } 
+
+		 } %>
+	</div>
+	<% } %>
+	
+	<% } %>
+	
 	<header>
 
 		<div class="header-cont">
@@ -64,7 +121,9 @@
 					
 				</div>
 				
-				<div class="match-highlight-box-cont">
+				<% hightlightBox(); %>
+				
+				<!-- <div class="match-highlight-box-cont">
 				
 					<div class="match-highlight-title-cont">
 					
@@ -93,7 +152,7 @@
 					
 					</div>
 				
-				</div>
+				</div> -->
 			
 			</div>
 			
@@ -111,43 +170,13 @@
 							
 							</div>
 							
-							<li class="list-links"> 
-								<a href="#"> Champions League</a> 
-							</li>
+							<% for(let competition of competitionArr) { %>
 							
-							<li class="list-links"> 
-								<a href="#"> Champions League</a> 
-							</li>
-							
-							<li class="list-links"> 
-								<a href="#"> Champions League</a> 
-							</li>
-							
-							<li class="list-links"> 
-								<a href="#"> Champions League</a> 
-							</li>
-							
-							<li class="list-links"> 
-								<a href="#"> Champions League</a> 
-							</li>
-							
-							<li class="list-links"> 
-								<a href="#"> Champions League</a> 
-							</li>
-							
-							<li class="list-links"> 
-								<a href="#"> Champions League</a> 
-							</li>
-							
-							<li class="list-links"> 
-								<a href="#"> Champions League</a> 
-							</li>
-							
-							<li class="list-links"> 
-								<a href="#"> Champions League</a> 
-							</li>
-							
-							
+								<li class="list-links"> 
+									<a href="<%= `${ req.url }${ competition }` %>"> <%= competition %></a> 
+								</li>
+
+							<% } %>
 						
 						</ul>
 					

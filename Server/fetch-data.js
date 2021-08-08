@@ -46,7 +46,7 @@ let fetch_data = async (req, res) => {
 	let testArr = [...new Set(matches.map(JSON.stringify))].map(JSON.parse);
 	
 	await match_highlights.countDocuments({}, async function( err, count){
-		console.log( "Number of users:", count );
+		//console.log( "Number of users:", count );
 		
 		if(count === 0){
 			await match_highlights.insertMany(testArr);
@@ -78,12 +78,10 @@ let fetch_data = async (req, res) => {
 				await match_highlights.insertMany(testArr);
 			}
 			
-			//console.log(testArr);
-			
 		}
 		
 		console.log(`Amount: ${ result.length }`)
-		res.status(200).render('index', { result });
+		res.status(200).render('index', { result, req });
 		
 	}).catch((err) => {
 		console.log(err);
