@@ -45,12 +45,20 @@ let fetch_data = async (req, res) => {
 	
 	let testArr = [...new Set(matches.map(JSON.stringify))].map(JSON.parse);
 	
+	await match_highlights.countDocuments({}, async function( err, count){
+		console.log( "Number of users:", count );
+		
+		if(count === 0){
+			await match_highlights.insertMany(testArr);
+		}
+	})
+	
 	await match_highlights.find().then( async (result) => {
 		
-		/* match_highlights.deleteMany({}, (err, res) => {
-			if(err) throw err;
-			console.log('item from Advertisers DB has been deleted');
-		}) */
+		/*  match_highlights.deleteMany({}, (err, res) => {
+				if(err) throw err;
+				console.log('item from Advertisers DB has been deleted');
+			}) */
 		
 		if(result.length !== 0){
 			
@@ -69,18 +77,13 @@ let fetch_data = async (req, res) => {
 			if(testArr.length > 0){
 				await match_highlights.insertMany(testArr);
 			}
-
+			
 			//console.log(testArr);
 			
-			res.status(200).render('index', { result });
-			
-		}else{
-		
-		await match_highlights.insertMany(testArr);
-		
-			res.status(200).render('index', { result });
-			
 		}
+		
+		console.log(`Amount: ${ result.length }`)
+		res.status(200).render('index', { result });
 		
 	}).catch((err) => {
 		console.log(err);
