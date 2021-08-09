@@ -5,19 +5,25 @@ let highlightVidReveal = function(){
 	for(i = 0; i < match_highlight_teams.length; i++){
 		
 		let match = match_highlight_teams[i];
+
+		let arr = [match.nextElementSibling.innerText];
 		
 		match.onclick = function(){
-		 
+		    
 			let vid = this.nextElementSibling;
-
+			
 			vid.style.transition = '0.6s';
 			
 			if(vid.style.maxHeight){
 				
 				vid.style.maxHeight = null;
 				
-			}else{
+				setTimeout(() => {
+					vid.innerText = arr[0];
+				}, 6000);
 				
+			}else{
+				vid.innerHTML = arr[0].replace(/["]/g, "");
 				vid.style.maxHeight = vid.scrollHeight + 'px';
 				
 			}
@@ -30,19 +36,3 @@ let highlightVidReveal = function(){
 
 highlightVidReveal();
 
-/* let footballHighlightData = `https://www.scorebat.com/video-api/v3/`;
-
-	fetch(footballHighlightData, { 
-		method: 'GET'
-	} ).then( async (res) => {
-		let response = await res.json();
-		
-		//if(response.ok){
-			console.log(response);
-		//}
-		
-	}).catch((err) => {
-		
-		console.log(err);
-		
-	}); */
