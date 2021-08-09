@@ -203,7 +203,7 @@ header{
 	transition: 0.3s;
 }
 
-.match-highlight-title-cont h1 a{
+.match-highlight-title-cont h1 a, .competition-title{
 	color: rgb(178,34,34);
 }
 
@@ -245,6 +245,12 @@ header{
 	max-height: 0;
 	overflow: hidden;
 	transition: 0.3s;
+}
+
+.competition-title{
+	font-size: 2rem;
+	font-weight: 900;
+	font-family: Montserrat,sans-serif;
 }
 
 .football-league-nav-cont{

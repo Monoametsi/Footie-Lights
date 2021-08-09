@@ -161,25 +161,41 @@
 			
 			<div class="match-highlights-cont">
 				
-				<div class="search-engine-box-cont">
-					
-					<div class="search-engine-box-title-cont">
-						
-						<h3> Lastest Football Highlights </h3>
-						
-					</div>
-					
-					<div class="search-engine-cont">
-						
-						<input type="search" name="search-input" placeholder="Search for match or team..." class="search-input">
-						
-						<button class="search-btn">
-							<i class="fa fa-search"></i>
-						</button>
-						
-					</div>
 				
-				</div>
+					
+					<% if(Object.keys(req.params).length === 0){ %> 
+					<div class="search-engine-box-cont">
+						<div class="search-engine-box-title-cont">
+						
+							<h3> Lastest Football Highlights </h3>
+							
+						</div>
+						
+						
+						<div class="search-engine-cont">
+							
+							<input type="search" name="search-input" placeholder="Search for match or team..." class="search-input">
+							
+							<button class="search-btn">
+								<i class="fa fa-search"></i>
+							</button>
+							
+						</div>
+						</div>
+					<% }else{ 
+					
+					 let { competition } = req.params;
+					%> 
+						<div class="search-engine-box-cont" style="padding: 0;">
+							<div class="search-engine-box-title-cont">
+							
+								<h1 class="competition-title"> <%= competition %> </h1>
+								
+							</div>
+						</div>
+				<%	} %>
+				
+				
 				
 				<% 
 				
