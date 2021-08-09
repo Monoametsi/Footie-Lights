@@ -9,7 +9,7 @@ body{
 	margin: 0;
 	padding: 0;
 	font-family: "Poppins",sans-serif;
-	background-color: #eee7;`
+	background-color: #eee7;
 }
 
 a{
@@ -98,7 +98,7 @@ header{
 }
 
 .Highlights-info-cont{
-	margin: auto;
+	margin: 0 2rem;
 }
 
 .football-league-info-cont{
@@ -254,8 +254,8 @@ header{
 }
 
 .football-league-nav-cont{
-	width: 300px;
-	/* background-color: green; */
+	width: 100%;
+	max-width: 300px;
 }
 
 .side-bar-cont{

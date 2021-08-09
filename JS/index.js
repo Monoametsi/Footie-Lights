@@ -5,6 +5,8 @@ let highlightVidReveal = function(){
 	for(i = 0; i < match_highlight_teams.length; i++){
 		
 		let match = match_highlight_teams[i];
+		
+		/* console.log(match); */
 
 		let arr = [match.nextElementSibling.innerText];
 		
@@ -36,3 +38,6 @@ let highlightVidReveal = function(){
 
 highlightVidReveal();
 
+/* let highlight_box_cont = document.getElementsByClassName("match-highlight-box-cont");
+
+console.log(highlight_box_cont); */
