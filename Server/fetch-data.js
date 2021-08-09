@@ -82,7 +82,7 @@ let fetch_data = async (req, res) => {
 			
 		}
 		
-		//console.log(`Amount: ${ result.length }`)
+		//console.log(`Amount: ${ result.length }`);
 		res.status(200).render('index', { result, req, dateFormater });
 		
 	}).catch((err) => {

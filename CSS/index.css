@@ -116,14 +116,28 @@ header{
 	flex-direction: column;
 }
 
-.search-engine-cont{
+.search-engine-box-cont{
 	display: flex;
-	background-color: #fff;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 	width: 100%;
+	background-color: #fff;
 	box-shadow: 0 0 10px #f3eded;
 	padding: 20px;
+	padding-top: 0;
 	border-radius: 15px;
 	margin-bottom: 2rem;
+}
+
+.search-engine-box-title-cont h3{
+	font-weight: 400;
+	font-family: Montserrat,sans-serif;
+}
+
+.search-engine-cont{
+	display: flex;
+	width: 100%;
 }
 
 .search-input{

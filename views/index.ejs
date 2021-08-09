@@ -28,7 +28,7 @@
 		<div class="match-highlight-title-cont">
 		
 			<h1>
-				<a href="<%= `${ req.url }${ compName }` %>"> <%= compName %> </a> 
+				<a href="<%= `${ compName }` %>"> <%= compName %> </a> 
 			</h1>
 		
 		</div>
@@ -109,15 +109,25 @@
 		<div class="football-league-info-cont">
 			
 			<div class="match-highlights-cont">
-			
-				<div class="search-engine-cont">
+				
+				<div class="search-engine-box-cont">
 					
-					<input type="search" name="search-input" placeholder="Search for match or team..." class="search-input">
+					<div class="search-engine-box-title-cont">
+						
+						<h3> Lastest Football Highlights </h3>
+						
+					</div>
 					
-					<button class="search-btn">
-						<i class="fa fa-search"></i>
-					</button>
-					
+					<div class="search-engine-cont">
+						
+						<input type="search" name="search-input" placeholder="Search for match or team..." class="search-input">
+						
+						<button class="search-btn">
+							<i class="fa fa-search"></i>
+						</button>
+						
+					</div>
+				
 				</div>
 				
 				<% hightlightBox(); %>
@@ -141,7 +151,7 @@
 							<% for(let competition of competitionArr) { %>
 							
 								<li class="list-links"> 
-									<a href="<%= `${ req.url }${ competition }` %>"> <%= competition %></a> 
+									<a href="<%= `${ competition }` %>"> <%= competition %></a> 
 								</li>
 
 							<% } %>

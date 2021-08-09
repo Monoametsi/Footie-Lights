@@ -17,6 +17,9 @@ dotenv.config({path: path.join(__dirname, '.env')});
 app.set('view engine', 'ejs');
 
 app.get('/', fetch_data);
+//app.get('/:competition', fetch_data);
+
+app.use('/', fetch_data);
 
 const PORT = process.env.PORT || 4500;
 const dataBaseUrl = process.env.DATABASE;
