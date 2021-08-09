@@ -182,7 +182,7 @@ header{
 	color: rgba(255, 0, 0, 0.5);
 }
 
-.match-highlight-box-cont{
+.match-highlight-box-cont, .notFound-cont{
 	display: flex;
 	flex-direction: column;
 	background-color: #fff;
@@ -192,18 +192,22 @@ header{
 	margin-bottom: 2rem;
 }
 
-.match-highlight-title-cont{
+.notFound-cont{
+	display: none;
+}
+
+.match-highlight-title-cont, .notFound-msg-cont{
 	margin-left: 1rem;
 	padding-bottom: 20px;
 }
 
-.match-highlight-title-cont h1{
+.match-highlight-title-cont h1, .notFound-msg-cont h1{
 	font-size: 1.2rem;
 	cursor: pointer;
 	transition: 0.3s;
 }
 
-.match-highlight-title-cont h1 a, .competition-title{
+.match-highlight-title-cont h1 a, .competition-title, .notFound-msg-cont h1{
 	color: rgb(178,34,34);
 }
 
@@ -308,3 +312,41 @@ header{
 .list-links a:hover{
 	background-color: #f0f0f0;
 }
+
+/* scrollTop */
+
+.scrollTop-cont{
+	position: fixed;
+	right: 0;
+	bottom: 5.1rem;
+	background-color: rgba(255, 0, 4, 1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px;
+	cursor: pointer;
+	transform: translateX(3rem);
+	transition: 0.3s;
+	z-index: 15;
+}
+
+.fa-arrow-right{
+	transform: rotate(-90deg);
+	color: #fff;
+	font-size: 1.3rem;
+}
+
+.scrollTop-cont:hover .fa-arrow-right{
+	animation-name: moveScrollTopArrow;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	border-color: #000;
+}
+
+@keyframes moveScrollTopArrow{
+	0%{ transform: translateY(0) rotate(-90deg); }
+	50%{ transform: translateY(-5px) rotate(-90deg); }
+	100%{ transform: translateY(0) rotate(-90deg); }
+}
+
+/* scrollTop */

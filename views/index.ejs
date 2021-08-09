@@ -155,14 +155,12 @@
 
 	</header>
 	
-	<div class="Highlights-info-cont">
+	<div class="Highlights-info-cont" id="Highlights-info-cont">
 	
 		<div class="football-league-info-cont">
 			
 			<div class="match-highlights-cont">
 				
-				
-					
 					<% if(Object.keys(req.params).length === 0){ %> 
 					<div class="search-engine-box-cont">
 						<div class="search-engine-box-title-cont">
@@ -171,12 +169,11 @@
 							
 						</div>
 						
-						
 						<div class="search-engine-cont">
 							
-							<input type="search" name="search-input" placeholder="Search for match or team..." class="search-input" id="search-input">
+							<input type="search" name="search-input" placeholder="Search for team..." class="search-input" id="search-input">
 							
-							<button class="search-btn">
+							<button class="search-btn" id="search-btn">
 								<i class="fa fa-search"></i>
 							</button>
 							
@@ -210,6 +207,22 @@
 				}
 				
 				%>
+				
+
+				<div class="notFound-cont" id="notFound-cont">
+		
+					<div class="notFound-msg-cont">
+						
+						<h1 id="notFound-msg">
+							<a> NOTHING FOUND. SEE ALL <%= result.length %> GAMES › </a> 
+						</h1>
+						
+					</div>
+					
+					
+				</div>
+				
+				
 			
 			</div>
 			
@@ -245,6 +258,12 @@
 			
 		</div>
 	
+	</div>
+	
+	<div class="scrollTop-cont" id="scrollTop-cont">
+
+		<i class="fa fa-arrow-right"></i>
+
 	</div>
 	
 	<script src="/JS/index.js"></script>
