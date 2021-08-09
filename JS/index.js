@@ -127,7 +127,7 @@ function redirect(){
 let sections = document.getElementById('Highlights-info-cont');
 
 let scrollTop = document.getElementById('scrollTop-cont');
-
+//scrollTop
 scrollTop.onclick = function(){
 	let count = 0;
 	let smoothScrollTop = setInterval(() => {
