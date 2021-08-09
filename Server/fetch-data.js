@@ -2,6 +2,8 @@ const fetch = require('node-fetch');
 const highlights = require('./model/match-highlights-model');
 const { match_highlights } = highlights;
 const uuid = require('uuid');
+const date_Formater = require('./date-formater');
+const { dateFormater } = date_Formater;
 
 let fetch_data = async (req, res) => {
 	let matches = [];
@@ -80,8 +82,8 @@ let fetch_data = async (req, res) => {
 			
 		}
 		
-		console.log(`Amount: ${ result.length }`)
-		res.status(200).render('index', { result, req });
+		//console.log(`Amount: ${ result.length }`)
+		res.status(200).render('index', { result, req, dateFormater });
 		
 	}).catch((err) => {
 		console.log(err);

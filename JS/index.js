@@ -18,9 +18,9 @@ let highlightVidReveal = function(){
 				
 				vid.style.maxHeight = null;
 				
-				setTimeout(() => {
+				/* setTimeout(() => {
 					vid.innerText = arr[0];
-				}, 6000);
+				}, 3000); */
 				
 			}else{
 				vid.innerHTML = arr[0].replace(/["]/g, "");
