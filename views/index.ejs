@@ -19,7 +19,7 @@
 		competitionArr.add(competition.slice(competition.search(":") + 1, competition.length).trim());
 	});
 	
-	 let hightlightBox = () => { 
+	 let hightlightBox = () => {
 	
 	 for(let compName of competitionArr) { %>
 	 
@@ -57,9 +57,7 @@
 							</div>
 						
 						</div>
-					
-						
-				
+
 				<% } 
 
 		 } %>
@@ -67,6 +65,59 @@
 	<% } %>
 	
 	<% } %>
+	
+	
+	<% 
+	
+	let hightlightBoxFilter = () => {
+	   let count = 0;
+	   let { competition } = req.params;
+	   let compName = competition;
+	%>
+	
+	<div class="match-highlight-box-cont">
+		
+		<div class="match-highlight-title-cont">
+			
+			<h1>
+				<a href="<%= `${ compName }` %>"> <%= compName %> </a> 
+			</h1>
+			
+		</div>
+		
+		<% for(let matchObj of result) {
+		
+			let { title, competition, date, videos } = matchObj;
+		
+				 if(compName === competition.slice(competition.search(":") + 1, competition.length).trim()){ 
+				 %>
+					
+						<div class="match-highlight-teams-cont">
+						
+							<div class="match-highlight-teams">
+							
+								<span> <%= title %> </span>
+								<span> <%= dateFormater(date) %> </span>
+							
+							</div>
+							
+							<div class="match-highlight-vid-cont">
+							
+							<% let vids = [...videos.map(JSON.stringify)].map(JSON.parse); 
+							%>
+								<%= vids[0].embed %>
+								
+							</div>
+						
+						</div>
+
+				<% }
+
+		 } %>
+	</div>
+	
+	<% } %>
+	
 	
 	<header>
 
@@ -130,7 +181,19 @@
 				
 				</div>
 				
-				<% hightlightBox(); %>
+				<% 
+				
+				if(Object.keys(req.params).length === 0){
+					
+					hightlightBox(); 
+					
+				}else{
+					
+					hightlightBoxFilter();
+					
+				}
+				
+				%>
 			
 			</div>
 			

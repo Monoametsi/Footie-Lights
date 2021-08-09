@@ -82,8 +82,35 @@ let fetch_data = async (req, res) => {
 			
 		}
 		
+		let emptyFilter = false;
+		let notFound = () => {
+		   let count = 0;
+		   let { competition } = req.params;
+		   let compName = competition;
+			
+			if(competition){
+				 for(let matchObj of result) {
+				
+					let { title, competition, date, videos } = matchObj;
+				
+					if(compName !== competition.slice(competition.search(":") + 1, competition.length).trim()){ 
+						count++;
+						if(count === result.length){
+							emptyFilter = true;
+						}
+					}
+				}
+			}
+		}
+		
+		notFound();
+		if(emptyFilter){
+			
+			return res.redirect("/");
+		}
+		
 		//console.log(`Amount: ${ result.length }`);
-		res.status(200).render('index', { result, req, dateFormater });
+		res.status(200).render('index', { result, req, res, dateFormater });
 		
 	}).catch((err) => {
 		console.log(err);
