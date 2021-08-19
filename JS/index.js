@@ -7,7 +7,7 @@ let highlightVidReveal = function(){
 	for(i = 0; i < match_highlight_teams.length; i++){
 		
 		let match = match_highlight_teams[i];
-
+		
 		let arr = [match.nextElementSibling.innerText];
 		
 		match.onclick = function(){
@@ -76,8 +76,6 @@ let searchEngineSystem = () => {
 		let count = 0;
 		let teamParentCont = match_highlight_box_cont[i].children;
 		
-		//console.log(`Amount: ${ teamParentCont.length }`);
-		
 		for(j = 0; j < teamParentCont.length; j++){
 			
 			
@@ -124,10 +122,11 @@ function redirect(){
 	
 }
 
+//scrollTop
 let sections = document.getElementById('Highlights-info-cont');
 
 let scrollTop = document.getElementById('scrollTop-cont');
-//scrollTop
+
 scrollTop.onclick = function(){
 	let count = 0;
 	let smoothScrollTop = setInterval(() => {

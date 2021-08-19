@@ -1,35 +1,29 @@
 const fetch = require('node-fetch');
 const highlights = require('./model/match-highlights-model');
 const { match_highlights } = highlights;
-const uuid = require('uuid');
 const date_Formater = require('./date-formater');
 const { dateFormater } = date_Formater;
 
 let fetch_data = async (req, res) => {
 	let matches = [];
-	let footballHighlightData = `https://www.scorebat.com/video-api/v3/`;
+	let apiUrl = `https://www.scorebat.com/video-api/v3/`;
 	
-	await fetch(footballHighlightData, {
+	await fetch(apiUrl, {
 		method: 'GET'
 	}).then( async (res) => {
 		let response = await res.json();
-		let results = response.response;
+		let apiData = response.response;
 		
-		results.map((elem) => {
+		apiData.map((elem) => {
 
 			elem.videos.map((elem2, index) => {
 				
 				if(elem2.title === 'Highlights'){
 					let { title, competition, date, videos } = elem;
 					
-					let matchObj = {
-						title,
-						competition,
-						date,
-						videos
-					}
+					let matchInfo = {title, competition, date, videos}
 					
-					matches.push(matchObj);
+					matches.push(matchInfo);
 					
 				}else{
 					elem.videos.splice(index);
@@ -41,14 +35,14 @@ let fetch_data = async (req, res) => {
 	
 	}).catch((err) => {
 	
-		console.log(err);
+		throw new Error(err);
 	
 	});
 	
 	let testArr = [...new Set(matches.map(JSON.stringify))].map(JSON.parse);
 	
-	await match_highlights.countDocuments({}, async function( err, count){
-		//console.log( "Number of users:", count );
+	await match_highlights.countDocuments({}, async (err, count) => {
+		//console.log("Number of matches:", count );
 		
 		if(count === 0){
 			await match_highlights.insertMany(testArr);
@@ -59,8 +53,9 @@ let fetch_data = async (req, res) => {
 		
 		/*  match_highlights.deleteMany({}, (err, res) => {
 				if(err) throw err;
-				console.log('item from Advertisers DB has been deleted');
-			}) */
+				console.log('All matches have been deleted');
+			})
+		*/
 		
 		if(result.length !== 0){
 			
@@ -109,7 +104,6 @@ let fetch_data = async (req, res) => {
 			return res.redirect("/");
 		}
 		
-		//console.log(`Amount: ${ result.length }`);
 		res.status(200).render('index', { result, req, res, dateFormater });
 		
 	}).catch((err) => {
