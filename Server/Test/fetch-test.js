@@ -35,9 +35,8 @@ const fetchTest = async () => {
 		matches = [...new Set(matches.map(JSON.stringify))].map(JSON.parse);
 		
 	}).catch((err) => {
-		
-		throw new Error(err);
-	
+		const error = new Error(err);
+		throw error;
 	});
 	
 	return matches;
@@ -47,18 +46,3 @@ const fetchTest = async () => {
 module.exports = {
 	fetchTest
 }
-
-/* fetchTest().then((result) => {
-	
-	fs.readFile(path.join(__dirname, 'response.js'),  "utf8", (err, data) => {
-	
-		if(data.trim().length === 0){
-			fs.writeFile(path.join(__dirname, 'response.js'), JSON.stringify(result, null, '\t'), (err) => {
-			  if (err) throw err;
-			  console.log("Saved");
-			});
-		}
-	
-	});
-	
-}); */

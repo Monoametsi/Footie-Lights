@@ -1,4 +1,7 @@
 jest.mock('node-fetch');
+const fetch = require('node-fetch');
+const app = require("../index.js");
+const { appDatabase } = app;
 const supertest = require("supertest");
 const should = require("should");
 const dotenv = require('dotenv');
@@ -7,21 +10,17 @@ const fetchData = require('./fetch-test.js');
 const responseData = require('./response.js');
 const dirname = __dirname.slice(0, __dirname.search(/Test/i) - 1);
 dotenv.config({path: path.join(dirname, '.env')});
-const server = supertest.agent(process.env.CLIENT_URL);
+const server = supertest(app.app);
 const { fetchTest } = fetchData;
 const mongoose = require('mongoose');
-const testDescription = "Unit tests for Footie-Lights";
-/* const task = "Should get data from database and return a response"; */
-const fetch = require('node-fetch');
-/* const fs = require('fs');  */
 const { Response } = jest.requireActual('node-fetch');
 const dataBaseUrl = process.env.DATABASE;
 const highlights = require('./test-model/test-model.js');
 const { match_highlights_test } = highlights;
 
-describe(testDescription, () => {
-	
-	jest.setTimeout(2000000);
+describe("Footie-Lights server", () => {
+
+	jest.setTimeout(200000);
 	
 	beforeAll(async () => {
 		
@@ -33,13 +32,16 @@ describe(testDescription, () => {
 		
 		await match_highlights_test.deleteMany({}, (err, res) => {
 			if(err) throw err;
-		})
+		});
+		
+		await appDatabase.disconnect();
+		app.app.listen().close();
 		
 		return await mongoose.disconnect();
 		
 	});
 	
-	test("Should fetch data from third party API", () => {
+	test("should fetch data from third party API", () => {
 		
 		fetch.mockResolvedValue(new Response(JSON.stringify(responseData)));
 		
@@ -50,8 +52,8 @@ describe(testDescription, () => {
 		
 	});
 	
-	test('All Videos title string should match "Highlights" string', () => {
-		
+	test("should check if all the API data's videos are highlights", () => {
+	
 		fetch.mockResolvedValue(new Response(JSON.stringify(responseData)));
 		
 		return fetchTest().then((result) => {
@@ -69,7 +71,7 @@ describe(testDescription, () => {
 		
 	});
 	
-	test("Should find no duplicates in the response", () => {
+	test("should find no duplicates in the matches array", () => {
 		
 		fetch.mockResolvedValue(new Response(JSON.stringify(responseData)));
 		
@@ -116,7 +118,7 @@ describe(testDescription, () => {
 		
 	});
 	
-	test("Should persist all API data to database if there arent any documents in the collection",  () => {
+	test("should persist all API data to database if there arent any documents in the collection",  () => {
 		
 		fetch.mockResolvedValue(new Response(JSON.stringify(responseData)));
 		
@@ -133,40 +135,113 @@ describe(testDescription, () => {
 		
 	});
 	
-	test(`Should check if API data is identical to database data, if so remove them 
-		 from the matches array and persist the non-identical ones to the database`,  () => {
+	test(`should check if API data is identical to database data, if so remove them 
+		 from the matches array and persist the non-identical ones to the database`,  async () => {
 		
-		fetch.mockResolvedValue(new Response(JSON.stringify(responseData)));
-		
-		return fetchTest().then(async (result) => {
-			
-			let matches = result;
-			
-			await match_highlights_test.find().then( async (result) => {
-			
-				if(result.length !== 0){
+		let matches = [
 				
-					await result.map((match, index) => {
-					
-						matches.map((match2,index) => {
-							
-							if(match.title === match2.title){
-								matches.splice(index, 1);
-							}
-							
-						});
-					
-					});
-					
-					if(matches.length > 0){
-						await match_highlights_test.insertMany(matches);
-					}
-					
+				{
+					title: "Sport Huancayo - Inti Gas Ayacucho",
+					competition: "PERU: Primera Division, Clausura",
+					matchviewUrl: "https://www.scorebat.com/embed/matchview/1062591/",
+					competitionUrl: "https://www.scorebat.com/embed/competition/peru-primera-division-clausura/",
+					thumbnail: "https://www.scorebat.com/og/m/og1062591.jpeg",
+					date: "2021-08-18T18:00:00+0000",
+					videos: [
+						{
+							title: "Highlights",
+							embed: "<div style='width:100%;height:0px;position:relative;padding-bottom:56.250%;'><iframe src='https://www.scorebat.com/embed/v/611d6f7f2e156/?utm_source=api&utm_medium=video&utm_campaign=v3' frameborder='0' width='100%' height='100%' allowfullscreen allow='autoplay; fullscreen' style='width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;'></iframe></div>"
+						}
+					]
+				},
+				{
+					title: "Ayacucho",
+					competition: "PERU: Primera Division, Clausura",
+					matchviewUrl: "https://www.scorebat.com/embed/matchview/1062591/",
+					competitionUrl: "https://www.scorebat.com/embed/competition/peru-primera-division-clausura/",
+					thumbnail: "https://www.scorebat.com/og/m/og1062591.jpeg",
+					date: "2021-08-18T18:00:00+0000",
+					videos: [
+						{
+							title: "Highlights",
+							embed: "<div style='width:100%;height:0px;position:relative;padding-bottom:56.250%;'><iframe src='https://www.scorebat.com/embed/v/611d6f7f2e156/?utm_source=api&utm_medium=video&utm_campaign=v3' frameborder='0' width='100%' height='100%' allowfullscreen allow='autoplay; fullscreen' style='width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;'></iframe></div>"
+						}
+					]
 				}
+				
+			];
+			
+		return await match_highlights_test.find().then( async (results) => {
+				
+				results.map((match, index) => {
+				
+					matches.map((match2,index) => {
+						
+						if(match.title === match2.title){
+							matches.splice(index, 1);
+						}
+						
+					});
+				
+				});
+				
+				matches.length.should.equal(1);
+				
+				await match_highlights_test.insertMany(matches);
 				
 			});
 		
+	});
+	
+	test("should return to home page if a match for request parameter value is not found in database", async () => {
+		
+		fetch.mockResolvedValue(new Response(JSON.stringify(responseData)));
+		
+		return await match_highlights_test.find().then(async (result) => {
+		
+			let emptyFilter = false; 
+			
+			let req = {
+				params: {
+					competition: '/Kazier Piefs'
+				}
+			};
+			
+			let notFound = () => {
+			   let count = 0;
+			   let { competition } = req.params;
+			   let compName = competition;
+				
+				for(let matchObj of result) {
+				
+					let { competition } = matchObj;
+				
+					if(compName !== competition.slice(competition.search(":") + 1, competition.length).trim()){ 
+						count++;
+						if(count === result.length){
+							emptyFilter = true;
+						}
+					}
+				}
+			}
+			
+			let response = await server.get('/Kazier Piefs');
+				notFound();
+				emptyFilter.should.equal(true);
+				response.redirect.should.equal(true);
+				response.status.should.equal(302);
+			
 		});
+		
+	});
+	
+	test("should return home page", async () => {
+		
+		fetch.mockResolvedValue(new Response(JSON.stringify(responseData)));
+		
+		let response = await server.get('/');
+			response.error.should.equal(false);
+			response.status.should.equal(200);
 		
 	});
 	

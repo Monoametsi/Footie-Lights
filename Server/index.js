@@ -26,12 +26,23 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 4500;
 const dataBaseUrl = process.env.DATABASE;
 
-mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true }).then((result) => {
+if (require.main === module) {
 	
-	app.listen(PORT, () => {
-		console.log(`Live at ${ PORT }`);
-	});
+	mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 	
-}).catch((err) => {
-	console.log(err);
-})
+		app.listen(PORT, () => {
+			console.log(`Live at ${ PORT }`);
+		});
+	
+	}).catch((err) => {
+		console.log(err);
+	})
+	
+}
+
+let appDatabase = mongoose;
+
+module.exports = {
+	app,
+	appDatabase
+}

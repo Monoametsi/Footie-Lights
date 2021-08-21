@@ -15,15 +15,16 @@ let fetch_data = async (req, res) => {
 		let response = await res.json();
 		let apiData = response.response;
 		
-		/* Transversing array to remove objects that don't have highlight videos */
+		/* Transversing array to remove objects that don't have highlight videos and pushing into a 
+		   the ones that do have highlights into a new array called matches.*/
 		apiData.map((matchData) => {
-
+		
 			matchData.videos.map((videoData, index) => {
 				
 				if(videoData.title === 'Highlights'){
 					let { title, competition, date, videos } = matchData;
 					
-					let matchInfo = {title, competition, date, videos}
+					let matchInfo = { title, competition, date, videos }
 					
 					matches.push(matchInfo);
 					
@@ -40,7 +41,8 @@ let fetch_data = async (req, res) => {
 		
 	}).catch((err) => {
 	
-		throw new Error(err);
+		const error = new Error(err)
+		throw error;
 	
 	});
 	
@@ -56,39 +58,29 @@ let fetch_data = async (req, res) => {
 	
 	await match_highlights.find().then( async (result) => {
 		
-		/*  match_highlights.deleteMany({}, (err, res) => {
-				if(err) throw err;
-				console.log('All matches have been deleted');
-			})
-		*/
-		
-		/* Checks if there are any elements in the matches array that are identical to the elements in the database, 
-		if so, those elements get removed and the ones that arent identical get inserted into the database */
-		
-		if(result.length !== 0){
+		/* Checks if there are any elements in the matches array that are identical 
+		to the elements in the database, if so, those elements get removed */
 			
-			await result.map((match, index) => {
+		result.map((match, index) => {
+			
+			matches.map((match2,index) => {
 				
-				matches.map((match2,index) => {
-					
-					if(match.title === match2.title){
-						matches.splice(index, 1);
-					}
-					
-				});
+				if(match.title === match2.title){
+					matches.splice(index, 1);
+				}
 				
 			});
 			
-			if(matches.length > 0){
-				await match_highlights.insertMany(matches);
-			}
-			
-		}
+		});
 		
-		let emptyFilter = false;
+		/*if there are elements in the matches array that arent identical to those in the database insert them in the database */
+		if(matches.length > 0){
+			await match_highlights.insertMany(matches);
+		}
 		
 		/* Checking if the request parameter called competition matches any of the competitions 
 			in the database. If no match is made then the emptyFilter is set to true. */
+		let emptyFilter = false;
 		let notFound = () => {
 		   let count = 0;
 		   let { competition } = req.params;
@@ -99,7 +91,7 @@ let fetch_data = async (req, res) => {
 				
 					let { competition } = matchObj;
 				
-					if(compName !== competition.slice(competition.search(":") + 1, competition.length).trim()){ 
+					if(compName !== competition){ 
 						count++;
 						if(count === result.length){
 							emptyFilter = true;
@@ -121,7 +113,8 @@ let fetch_data = async (req, res) => {
 		res.status(200).render('index', { result, req, res, dateFormater });
 		
 	}).catch((err) => {
-		throw new Error(err);
+		const error = new Error(err)
+		throw error;
 	});
 	
 }

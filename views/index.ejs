@@ -12,11 +12,21 @@
 </head>
 <body>
 
+<div class="load-cont" id="load-cont">
+  <div class="loading-cont">
+
+	  <div class="loading">	
+
+	  </div>
+
+  </div>
+</div>
+
 	<% let competitionArr = new Set(); 
 	
 	 result.map((compName) => {
 		let { competition } = compName;
-		competitionArr.add(competition.slice(competition.search(":") + 1, competition.length).trim());
+		competitionArr.add(competition);
 	});
 	
 	 let hightlightBox = () => {
@@ -28,17 +38,17 @@
 		<div class="match-highlight-title-cont">
 		
 			<h1>
-				<a href="<%= `${ compName }` %>"> <%= compName %> </a> 
+				<a href="/<%= `${ compName }` %>"> <%= compName %> </a> 
 			</h1>
 		
 		</div>
 							
 		<% for(let matchObj of result) { 
 			let { title, competition, date, videos } = matchObj;
-		
-				 if(compName === competition.slice(competition.search(":") + 1, competition.length).trim()){ 
-				 %>
 				
+				 if(compName === competition){ 
+				 %>
+					
 						<div class="match-highlight-teams-cont">
 						
 							<div class="match-highlight-teams">
@@ -89,7 +99,7 @@
 		
 			let { title, competition, date, videos } = matchObj;
 		
-				 if(compName === competition.slice(competition.search(":") + 1, competition.length).trim()){ 
+				 if(compName === competition){ 
 				 %>
 					
 						<div class="match-highlight-teams-cont">
@@ -148,7 +158,20 @@
 					</div>
 					
 				</div>
-
+				
+				
+				<div class="mobile-nav">
+					<div class="menu-toggle-cont-cont" id="menu-toggle-cont-cont">
+						<div class="menu-toggle-cont" id="menu-toggle-cont">
+						
+							<div class="menu-toggle top"></div>
+							<div class="menu-toggle mid"></div>
+							<div class="menu-toggle bottom"></div>
+						
+						</div>
+					</div>
+	
+				</div>
 			</div>
 			
 		</div>
@@ -226,7 +249,7 @@
 			
 			</div>
 			
-			<nav class="football-league-nav-cont">
+			<nav class="football-league-nav-cont" id="football-league-nav-cont">
 			
 				<div class="side-bar-cont">
 					
@@ -240,13 +263,29 @@
 							
 							</div>
 							
-							<% for(let competition of competitionArr) { %>
+							<% 
+							
+							let alpabeticalOrderedArr = []
+							for(let competition of competitionArr) { 
+							
+									alpabeticalOrderedArr.push(competition);
+
+							} %>
+							
+							
+							<% alpabeticalOrderedArr.sort().map((competition) => { %>
+							<%
+								
+							let league = competition.slice(competition.search(":") + 1, competition.length) 
+							let Country = competition.slice(0, 1).trim() + competition.slice(1, competition.search(":") + 1).toLowerCase() 
+							
+							%>
 							
 								<li class="list-links"> 
-									<a href="<%= `${ competition }` %>"> <%= competition %></a> 
+									<a href="<%= `/${ competition }` %>"> <%= Country + league %></a> 
 								</li>
 
-							<% } %>
+							<% }) %>
 						
 						</ul>
 					

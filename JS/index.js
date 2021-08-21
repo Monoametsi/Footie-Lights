@@ -20,10 +20,6 @@ let highlightVidReveal = function(){
 				
 				vid.style.maxHeight = null;
 				
-				/* setTimeout(() => {
-					vid.innerText = arr[0];
-				}, 3000); */
-				
 			}else{
 				vid.innerHTML = arr[0].replace(/["]/g, "");
 				vid.style.maxHeight = vid.scrollHeight + 'px';
@@ -146,7 +142,7 @@ let firstSectionOffsetTop = sections.offsetTop;
 
 let showOrHideBtn = () => {
 
-	if(window.scrollY >= firstSectionOffsetTop/2 || window.scrollY >= firstSectionOffsetTop/2){
+	if(window.scrollY >= firstSectionOffsetTop * 4 || window.scrollY >= firstSectionOffsetTop * 4){
 		
 		scrollTop.style.transform = 'translateX(0)';
 
@@ -160,4 +156,40 @@ showOrHideBtn();
 window.onscroll = () => {
 
 	showOrHideBtn();
+}
+
+let elemHider = (elem, time, anime) => {
+	elem.classList.add(anime);
+
+	setTimeout(() => {
+		document.body.style.overflow = "auto";
+		document.documentElement.style.overflow = "auto";
+		elem.style.display = 'none';
+
+	}, time);
+
+}
+
+let preloader = document.getElementById('load-cont');
+
+window.onload = () => {
+	
+	elemHider(preloader, 1500, 'hide');
+
+}
+
+let menuToggle = document.getElementById('menu-toggle-cont');
+let navList = document.getElementById('football-league-nav-cont');
+
+menuToggle.onclick = function(){
+	
+	this.classList.toggle('flip-toggle');
+	navList.style.transition = '0.3s';
+	
+	if(navList.style.maxHeight){
+		navList.style.maxHeight = null;
+
+	}else{
+		navList.style.maxHeight = navList.scrollHeight + 'px';
+	}
 }

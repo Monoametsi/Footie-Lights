@@ -1,0 +1,55 @@
+@media screen and (max-width:1000px){
+	
+	.football-league-nav-cont{
+		max-width: 250px;
+	}
+
+	.side-bar-cont{
+		width: 250px;
+		padding-right: 0;
+		padding-left: 10px;
+	}
+	
+}
+
+@media screen and (max-width:945px){
+	
+	.mobile-nav{
+		display: flex;
+	}
+	
+	.list-title-cont h1{
+		font-size: 1rem;
+	}
+	
+	.football-league-nav-cont{
+		display: flex;
+		order: 1;
+		max-height: 0;
+		overflow: hidden;
+		max-width: 100%;
+		transition: 0.3s;
+	}
+	
+	.side-bar-cont{
+		position: static;
+		width: 100%;
+		padding-bottom: 2rem;
+	}
+	
+	.list-links a{
+		font-size: 18px;
+	}
+	
+	.football-league-info-cont{
+		flex-direction: column;
+	}
+	
+	.match-highlights-cont{
+		order: 2;
+	}
+}
+
+@media screen and (max-width: 440px){
+	
+}
