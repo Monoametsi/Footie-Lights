@@ -1,3 +1,6 @@
+document.body.style.overflow = "hidden";
+document.documentElement.style.overflow = "hidden";
+
 let match_highlight_teams = document.getElementsByClassName('match-highlight-teams');
 
 let match_highlight_box_cont = document.getElementsByClassName('match-highlight-box-cont');
@@ -157,9 +160,6 @@ window.onscroll = () => {
 
 	showOrHideBtn();
 }
-
-document.body.style.overflow = "hidden";
-document.documentElement.style.overflow = "hidden";
 
 let elemHider = (elem, time, anime) => {
 	elem.classList.add(anime);
