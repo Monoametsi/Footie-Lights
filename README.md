@@ -13,7 +13,7 @@ on the browser. </p>
 	<li>Open a command prompt. </li><br>
 	<li>Run <code>docker build -t footie-lights .</code> to build images.</li><br>
 	<li>Run the <code>docker run -it -p 4500:4500 footie-lights</code> to run the container. </li><br>
-	<li>Navigate to http://localhost:4500.</li><br>
+	<li>Navigate to http://localhost:4500 in your browser.</li><br>
 	<li>Use http://192.168.99.100:4500 if you're using Docker Toolbox. This assumes that's the IP assigned to VirtualBox - change if needed.</li>
 </ol>
 
