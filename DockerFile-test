@@ -1,0 +1,9 @@
+FROM footie-lights
+
+COPY Server/Test Server/Test
+
+RUN npm install && \
+	npm install -g jest && \
+	npm install -g mocha
+
+CMD ["npm", "test"]
