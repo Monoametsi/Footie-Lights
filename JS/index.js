@@ -158,6 +158,9 @@ window.onscroll = () => {
 	showOrHideBtn();
 }
 
+document.body.style.overflow = "none";
+document.documentElement.style.overflow = "none";
+
 let elemHider = (elem, time, anime) => {
 	elem.classList.add(anime);
 
