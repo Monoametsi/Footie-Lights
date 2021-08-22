@@ -11,8 +11,8 @@ on the browser. </p>
 	<li>Install Docker for windows or Docker for Mac.</li>
 	<li>If you're using windows 7 install Docker Toolbox: https://github.com/docker/toolbox/releases</li>
 	<li>Open a command prompt. </li>
-	<li>Run `docker build -t footie-lights .` to build images.</li>
-	<li>Run the `docker run -it -p 4500:4500 footie-lights` to run the container. </li>
+	<li>Run <code>docker build -t footie-lights .</code> to build images.</li>
+	<li>Run the <code>docker run -it -p 4500:4500 footie-lights</code> to run the container. </li>
 	<li>Navigate to http://localhost:4500.</li>
 	<li>Use http://192.168.99.100:4500 if you are using Docker Toolbox. This assumes that's the IP assigned to VirtualBox - change if needed.</li>
 </ol>
