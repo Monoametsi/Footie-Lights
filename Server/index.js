@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const fetchData = require('./fetch-data');
 const { fetch_data } = fetchData;
 const dirname = __dirname.slice(0, __dirname.search(/Server/i) - 1);
-
+/* "${DOCKER_MACHINE}" create -d virtualbox $PROXY_ENV "${VM}" */
 app.disable('etag');
 
 const dotenv = require('dotenv');

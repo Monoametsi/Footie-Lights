@@ -188,7 +188,7 @@ menuToggle.onclick = function(){
 	
 	if(navList.style.maxHeight){
 		navList.style.maxHeight = null;
-
+	
 	}else{
 		navList.style.maxHeight = navList.scrollHeight + 'px';
 	}
