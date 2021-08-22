@@ -9,7 +9,7 @@ on the browser. </p>
 
 <ol>
 	<li>Install Node.js(http://nodejs.org) and Docker for windows or Docker for Mac.</li><br>
-	<li>If you're using windows 7 install Docker Toolbox: https://github.com/docker/toolbox/releases</li><br>
+	<li>If you're using windows 7 install Docker Toolbox: <a href="https://github.com/docker/toolbox/releases">https://github.com/docker/toolbox/releases</a>.</li><br>
 	<li>Open a command prompt. </li><br>
 	<li>Run <code>docker build -t footie-lights .</code> to build images.</li><br>
 	<li>Run the <code>docker run -it -p 4500:4500 footie-lights</code> to run the container. </li><br>
@@ -44,7 +44,7 @@ on the browser. </p>
 
 <ol>
 	<li>Install Node.js(http://nodejs.org) and Docker for windows or Docker for Mac.</li><br>
-	<li>If you're using windows 7 install Docker Toolbox: https://github.com/docker/toolbox/releases</li><br>
+	<li>If you're using windows 7 install Docker Toolbox: <a href="https://github.com/docker/toolbox/releases">https://github.com/docker/toolbox/releases</a>.</li><br>
 	<li>Open a command prompt. </li><br>
 	<li>Run <code>docker build -t footie-lights-test -f DockerFile-test .</code> to build images.</li><br>
 	<li>Run the <code>docker run --rm footie-lights-test</code> to run the container. </li><br>
