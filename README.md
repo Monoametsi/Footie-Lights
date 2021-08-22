@@ -16,3 +16,12 @@ on the browser. </p>
 	<li>Navigate to http://localhost:4500.</li>
 	<li>Use http://192.168.99.100:4500 if you're using Docker Toolbox. This assumes that's the IP assigned to VirtualBox - change if needed.</li>
 </ol>
+
+<h2>Running the Application Locally: </h2>
+
+<ol>
+	<li>Install Node.js(http://nodejs.org).</li>
+	<li>Run <code>npm install</code> to install app dependencies.</li>
+	<li>Run <code>npm start</code> to start the server.</li>
+	<li>Navigate to http://localhost:4500 in your browser.</li>
+</ol>
