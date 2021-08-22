@@ -8,7 +8,7 @@ on the browser. </p>
 <h2>Running the Application with Docker: </h2>
 
 <ol>
-	<li>Install Docker for windows or Docker for Mac.</li><br>
+	<li>Install Node.js(http://nodejs.org) and Docker for windows or Docker for Mac.</li><br>
 	<li>If you're using windows 7 install Docker Toolbox: https://github.com/docker/toolbox/releases</li><br>
 	<li>Open a command prompt. </li><br>
 	<li>Run <code>docker build -t footie-lights .</code> to build images.</li><br>
