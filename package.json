@@ -4,7 +4,7 @@
   "description": "",
   "main": "Server/index.js",
   "scripts": {
-    "start": "nodemon Server/index",
+    "start": "node Server/index",
     "test": "jest Server/Test/test",
     "dev": "nodemon Server/index"
   },
