@@ -8,20 +8,20 @@ on the browser. </p>
 <h2>Running the Application with Docker: </h2>
 
 <ol>
-	<li style="padding: 10px;">Install Docker for windows or Docker for Mac.</li>
-	<li style="padding: 10px;">If you're using windows 7 install Docker Toolbox: https://github.com/docker/toolbox/releases</li><br>
-	<li style="padding: 10px;">Open a command prompt. </li><br>
-	<li style="padding: 10px;">Run <code>docker build -t footie-lights .</code> to build images.</li><br>
-	<li style="padding: 10px;">Run the <code>docker run -it -p 4500:4500 footie-lights</code> to run the container. </li><br>
-	<li style="padding: 10px;">Navigate to http://localhost:4500.</li><br>
-	<li style="padding: 10px;">Use http://192.168.99.100:4500 if you're using Docker Toolbox. This assumes that's the IP assigned to VirtualBox - change if needed.</li>
+	<li>Install Docker for windows or Docker for Mac.</li><br>
+	<li>If you're using windows 7 install Docker Toolbox: https://github.com/docker/toolbox/releases</li><br>
+	<li>Open a command prompt. </li><br>
+	<li>Run <code>docker build -t footie-lights .</code> to build images.</li><br>
+	<li>Run the <code>docker run -it -p 4500:4500 footie-lights</code> to run the container. </li><br>
+	<li>Navigate to http://localhost:4500.</li><br>
+	<li>Use http://192.168.99.100:4500 if you're using Docker Toolbox. This assumes that's the IP assigned to VirtualBox - change if needed.</li>
 </ol>
 
 <h2>Running the Application Locally: </h2>
 
 <ol>
-	<li style="padding: 10px;">Install Node.js(http://nodejs.org).</li><br>
-	<li style="padding: 10px;">Run <code>npm install</code> to install app dependencies.</li><br>
-	<li style="padding: 10px;">Run <code>npm start</code> to start the server.</li><br>
-	<li style="padding: 10px;">Navigate to http://localhost:4500 in your browser.</li>
+	<li>Install Node.js(http://nodejs.org).</li><br>
+	<li>Run <code>npm install</code> to install app dependencies.</li><br>
+	<li>Run <code>npm start</code> to start the server.</li><br>
+	<li>Navigate to http://localhost:4500 in your browser.</li>
 </ol>
