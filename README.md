@@ -28,7 +28,7 @@ on the browser. </p>
 
 <h2>Running application on heroku: </h2>
 <ul>
-	<li>Run the application on heroku's webhost by navigating to http://dry-hollows-47293.herokuapp.com/.</li>
+	<li>Run the application on heroku's webhost by navigating to https://limitless-garden-71595.herokuapp.com/.</li>
 </ul>
 
 
