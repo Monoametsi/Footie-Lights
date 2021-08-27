@@ -32,45 +32,51 @@
 	 let hightlightBox = () => {
 	
 	 for(let compName of competitionArr) { %>
-	 
-	 <div class="match-highlight-box-cont">
-				
-		<div class="match-highlight-title-cont">
+	<div class="match-highlight-box-cont-cont">
 		
-			<h1>
-				<a href="/<%= `${ compName }` %>"> <%= compName %> </a> 
-			</h1>
-		
+		<div class="show-more-btn">
+			<h4>Show More</h4>
 		</div>
-							
-		<% for(let matchObj of result) { 
-			let { title, competition, date, videos } = matchObj;
-				
-				 if(compName === competition){ 
-				 %>
+		
+		<div class="match-highlight-box-cont">
 					
-						<div class="match-highlight-teams-cont">
-						
-							<div class="match-highlight-teams">
-							
-								<span> <%= title %> </span>
-								<span> <%= dateFormater(date) %> </span>
-							
-							</div>
-							
-							<div class="match-highlight-vid-cont">
-							
-							<% let vids = [...videos.map(JSON.stringify)].map(JSON.parse); 
-							%>
-								<%= vids[0].embed %>
+			<div class="match-highlight-title-cont">
+			
+				<h1>
+					<a href="/<%= `${ compName }` %>"> <%= compName %> </a> 
+				</h1>
+			
+			</div>
 								
-							</div>
+			<% for(let matchObj of result) { 
+				let { title, competition, date, videos } = matchObj;
+					
+					 if(compName === competition){ 
+					 %>
 						
-						</div>
+							<div class="match-highlight-teams-cont">
+							
+								<div class="match-highlight-teams">
+								
+									<span> <%= title %> </span>
+									<span> <%= dateFormater(date) %> </span>
+								
+								</div>
+								
+								<div class="match-highlight-vid-cont">
+								
+								<% let vids = [...videos.map(JSON.stringify)].map(JSON.parse); 
+								%>
+									<%= vids[0].embed %>
+									
+								</div>
+							
+							</div>
 
-				<% } 
+					<% } 
 
-		 } %>
+			 } %>
+		</div>
 	</div>
 	<% } %>
 	
@@ -85,45 +91,54 @@
 	   let compName = competition;
 	%>
 	
-	<div class="match-highlight-box-cont">
-		
-		<div class="match-highlight-title-cont">
+	<div class="match-highlight-box-cont-cont">
+	
+		<div class="show-more-btn">
+			<h4>Show More</h4>
+		</div>
+	
+		<div class="match-highlight-box-cont">
 			
-			<h1>
-				<a href="<%= `${ compName }` %>"> <%= compName %> </a> 
-			</h1>
+			<div class="match-highlight-title-cont">
+				
+				<h1>
+					<a href="<%= `${ compName }` %>"> <%= compName %> </a> 
+				</h1>
+				
+			</div>
 			
+			<% for(let matchObj of result) {
+			
+				let { title, competition, date, videos } = matchObj;
+			
+					 if(compName === competition){ 
+					 %>
+						
+							<div class="match-highlight-teams-cont">
+							
+								<div class="match-highlight-teams">
+								
+									<span> <%= title %> </span>
+									<span> <%= dateFormater(date) %> </span>
+								
+								</div>
+								
+								<div class="match-highlight-vid-cont">
+								
+								<% let vids = [...videos.map(JSON.stringify)].map(JSON.parse); 
+								%>
+									<%= vids[0].embed %>
+									
+								</div>
+							
+							</div>
+
+					<% }
+
+			 } %>
+			 
 		</div>
 		
-		<% for(let matchObj of result) {
-		
-			let { title, competition, date, videos } = matchObj;
-		
-				 if(compName === competition){ 
-				 %>
-					
-						<div class="match-highlight-teams-cont">
-						
-							<div class="match-highlight-teams">
-							
-								<span> <%= title %> </span>
-								<span> <%= dateFormater(date) %> </span>
-							
-							</div>
-							
-							<div class="match-highlight-vid-cont">
-							
-							<% let vids = [...videos.map(JSON.stringify)].map(JSON.parse); 
-							%>
-								<%= vids[0].embed %>
-								
-							</div>
-						
-						</div>
-
-				<% }
-
-		 } %>
 	</div>
 	
 	<% } %>

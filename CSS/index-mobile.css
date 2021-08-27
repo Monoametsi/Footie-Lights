@@ -50,8 +50,11 @@
 	}
 }
 
-@media screen and (max-width: 440px){
+@media screen and (max-width:480px){
 	
-	
+	.competition-title{
+		font-size: 1.6rem;
+		padding: 8px;
+	}
 	
 }

@@ -6,6 +6,7 @@
 }
 
 body{
+	overflow: hidden;
 	margin: 0;
 	padding: 0;
 	font-family: "Poppins",sans-serif;
@@ -73,7 +74,7 @@ a{
 
 .hide{
 	animation-name: hide;
-    animation-duration: 2s;
+    animation-duration: 1s;
 }
 
 @keyframes hide{
@@ -290,7 +291,40 @@ header{
 	width: 100%;
 	box-shadow: 0 0 10px #f3eded;
 	border-radius: 15px;
+}
+
+.match-highlight-box-cont{
+	order: 1;
+	max-height: 710px;
+	overflow: hidden;
+	transition: 0.3s;
+	border-radius: 15px 15px 0 0;
+}
+
+.match-highlight-box-cont-cont{
+	display: flex;
+	flex-direction: column;
 	margin-bottom: 2rem;
+}
+
+.show-more-btn{
+	display: flex;
+	order: 2;
+	align-items: center;
+	justify-content: center;
+	background-color: red;
+	cursor: pointer;
+	border-radius: 0 0 15px 15px;
+	color: #fff;
+	height: 40px;
+	transition: 0.3s;
+	/* border-top: 1px dashed transparent; */
+}
+
+.show-more-btn:hover{
+	color: #000;
+	/* border-top: 1px dashed #f2f2f2; */
+	background-color: #f2f2f2;
 }
 
 .notFound-cont{
@@ -298,12 +332,16 @@ header{
 }
 
 .match-highlight-title-cont, .notFound-msg-cont{
-	margin-left: 1rem;
 	padding-bottom: 20px;
+}
+
+.match-highlight-title-cont{
+	border-bottom: 1px dashed #f2f2f2;
 }
 
 .match-highlight-title-cont h1, .notFound-msg-cont h1{
 	font-size: 1.2rem;
+	margin-left: 1rem;
 	cursor: pointer;
 	transition: 0.3s;
 }
@@ -320,14 +358,9 @@ header{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	border-top: 1px dashed #f2f2f2;
 	border-bottom: 1px dashed #f2f2f2;
 	cursor: pointer;
 	transition: 0.3s;
-}
-
-.match-highlight-teams-cont:last-child{
-	margin-bottom: 4rem;
 }
 
 .match-highlight-teams-cont:hover{

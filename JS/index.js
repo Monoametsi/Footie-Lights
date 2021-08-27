@@ -1,6 +1,26 @@
 document.body.style.overflow = "hidden";
 document.documentElement.style.overflow = "hidden";
 
+let elemHider = (elem, time, anime) => {
+	elem.classList.add(anime);
+
+	setTimeout(() => {
+		elem.style.display = 'none';
+		document.body.style.overflow = "auto";
+		document.documentElement.style.overflow = "auto";
+
+	}, time);
+
+}
+
+let preloader = document.getElementById('load-cont');
+
+window.onload = () => {
+	
+	elemHider(preloader, 150, 'hide');
+
+}
+
 let match_highlight_teams = document.getElementsByClassName('match-highlight-teams');
 
 let match_highlight_box_cont = document.getElementsByClassName('match-highlight-box-cont');
@@ -16,16 +36,24 @@ let highlightVidReveal = function(){
 		match.onclick = function(){
 		    
 			let vid = this.nextElementSibling;
-			
+			let containersParent = this.parentElement.parentElement;
 			vid.style.transition = '0.6s';
+			let maxHeight =  window.getComputedStyle(containersParent, null).maxHeight.replace("px", "");
+			let showMoreBtn = this.parentElement.parentElement.parentElement.children[0].innerText;
 			
 			if(vid.style.maxHeight){
 				
 				vid.style.maxHeight = null;
+				if(showMoreBtn === 'Show Less'){
+					containersParent.style.maxHeight = maxHeight;
+				}else{
+					containersParent.style.maxHeight = null;
+				}
 				
 			}else{
 				vid.innerHTML = arr[0].replace(/["]/g, "");
 				vid.style.maxHeight = vid.scrollHeight + 'px';
+				containersParent.style.maxHeight = parseInt(maxHeight) + vid.scrollHeight + 'px';
 				
 			}
 			
@@ -39,6 +67,7 @@ highlightVidReveal();
 
 let searchInput = document.getElementById("search-input");
 let notFoundBox = document.getElementById("notFound-cont");
+let showMoreBtn = document.getElementsByClassName("show-more-btn");
 
 let searchEngineSystem = () => {
 	
@@ -77,7 +106,6 @@ let searchEngineSystem = () => {
 		
 		for(j = 0; j < teamParentCont.length; j++){
 			
-			
 			if(searchInputVal.length > 2){
 			
 				if(window.getComputedStyle(teamParentCont[j], null).display === "none"){
@@ -91,23 +119,71 @@ let searchEngineSystem = () => {
 		if(searchInputVal.length > 2){
 			
 			if((teamParentCont.length - 1) === count){
+				match_highlight_box_cont[i].parentElement.style.display = "none";
 				match_highlight_box_cont[i].style.display = "none";
 			}else{
+				match_highlight_box_cont[i].parentElement.style.display = "flex";
 				match_highlight_box_cont[i].style.display = "flex";
 			}
 			
 		}else{
+			match_highlight_box_cont[i].parentElement.style.display = "flex";
 			match_highlight_box_cont[i].style.display = "flex";
+			
 		}
 		
 		count = 0;
 	}
 }
 
+let hideOrShowBtn = function(){
+	let amountShown = 0;
+	for(i = 0; i < showMoreBtn.length; i++){
+		
+		let nexSiblingsChildrenLen = showMoreBtn[i].nextElementSibling.children;
+		
+		for(j = 0; j < nexSiblingsChildrenLen.length; j++){
+			
+			if(window.getComputedStyle(nexSiblingsChildrenLen[j], null).display !== "none"){
+				amountShown++;
+			}
+			
+		}
+		
+		if(amountShown < 10){
+			showMoreBtn[i].nextElementSibling.style.borderRadius = "15px";
+			showMoreBtn[i].nextElementSibling.style.paddingBottom = "4rem";
+			showMoreBtn[i].style.display = "none";
+		}else{
+			showMoreBtn[i].nextElementSibling.style.borderRadius = "15px 15px 0 0";
+			showMoreBtn[i].nextElementSibling.style.paddingBottom = "0";
+			showMoreBtn[i].style.display = "flex";
+		}
+		
+		amountShown = 0;
+		
+		showMoreBtn[i].onclick = function(){
+			let nexSiblingsChildren = this.nextElementSibling;
+			
+			if(this.children[0].innerText === `Show Less`){
+				nexSiblingsChildren.style.maxHeight = null;
+				this.children[0].innerText = `Show More`;
+			}else{
+				nexSiblingsChildren.style.maxHeight = nexSiblingsChildren.scrollHeight + 'px';
+				this.children[0].innerText = `Show Less`;
+			}
+		}
+	}
+	
+}
+
+hideOrShowBtn();
+
 if(searchInput !== null){
 	searchInput.oninput = () => {
 		searchEngineSystem();
 		redirect();
+		hideOrShowBtn();
 	}
 }
 
@@ -117,6 +193,7 @@ function redirect(){
 		searchInput.value = "";
 		searchInput.value.trim();
 		searchEngineSystem();
+		hideOrShowBtn();
 	}
 	
 }
@@ -159,26 +236,6 @@ showOrHideBtn();
 window.onscroll = () => {
 
 	showOrHideBtn();
-}
-
-let elemHider = (elem, time, anime) => {
-	elem.classList.add(anime);
-
-	setTimeout(() => {
-		document.body.style.overflow = "auto";
-		document.documentElement.style.overflow = "auto";
-		elem.style.display = 'none';
-
-	}, time);
-
-}
-
-let preloader = document.getElementById('load-cont');
-
-window.onload = () => {
-	
-	elemHider(preloader, 1500, 'hide');
-
 }
 
 let menuToggle = document.getElementById('menu-toggle-cont');
