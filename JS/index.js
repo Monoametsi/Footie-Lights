@@ -34,7 +34,7 @@ let highlightVidReveal = function(){
 		let arr = [match.nextElementSibling.innerText];
 		
 		match.onclick = function(){
-		    
+		    let vidMaxHeight = 0;
 			let vid = this.nextElementSibling;
 			let containersParent = this.parentElement.parentElement;
 			vid.style.transition = '0.6s';
@@ -42,14 +42,16 @@ let highlightVidReveal = function(){
 			let showMoreBtn = this.parentElement.parentElement.parentElement.children[0].innerText;
 			
 			if(vid.style.maxHeight){
-				
+				vidMaxHeight = parseInt(vid.style.maxHeight.replace("px", ""));
 				vid.style.maxHeight = null;
 				if(showMoreBtn === 'Show Less'){
 					containersParent.style.maxHeight = maxHeight;
 				}else{
-					containersParent.style.maxHeight = null;
+					
+					containersParent.style.maxHeight = parseInt(maxHeight) - vidMaxHeight  + 'px';
+					
 				}
-				
+				//console.log(containersParent.style.maxHeight);
 			}else{
 				vid.innerHTML = arr[0].replace(/["]/g, "");
 				vid.style.maxHeight = vid.scrollHeight + 'px';
@@ -136,6 +138,23 @@ let searchEngineSystem = () => {
 	}
 }
 
+let addVidMaxHeight = (elem, parentElement) => {
+	
+	let vidMaxHeight = 0;
+	
+	for(index = 1; index < 10; index++){
+		
+		if(elem[index].children[1].style.maxHeight){
+
+			vidMaxHeight += elem[index].children[1].scrollHeight;
+			
+		}
+	}
+	
+	parentElement.style.maxHeight = 710 + vidMaxHeight + 'px';
+	
+}
+
 let hideOrShowBtn = function(){
 	let amountShown = 0;
 	for(i = 0; i < showMoreBtn.length; i++){
@@ -164,10 +183,11 @@ let hideOrShowBtn = function(){
 		
 		showMoreBtn[i].onclick = function(){
 			let nexSiblingsChildren = this.nextElementSibling;
-			
+			//console.log(nexSiblingsChildren.children[i].children[1]);
 			if(this.children[0].innerText === `Show Less`){
-				nexSiblingsChildren.style.maxHeight = null;
 				this.children[0].innerText = `Show More`;
+				nexSiblingsChildren.style.maxHeight = null;
+				addVidMaxHeight(nexSiblingsChildren.children, nexSiblingsChildren);
 			}else{
 				nexSiblingsChildren.style.maxHeight = nexSiblingsChildren.scrollHeight + 'px';
 				this.children[0].innerText = `Show Less`;
